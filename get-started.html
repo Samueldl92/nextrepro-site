@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started &ndash; NextRepro</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---- page layout ---- */
+    .get-started { max-width: 680px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
+    .get-started h1 { font-size: 1.8rem; margin-bottom: .4rem; }
+    .get-started .lead { color: #555; margin-bottom: 2rem; }
+
+    /* ---- tier tabs ---- */
+    .tier-tabs { display: flex; gap: .5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tier-btn {
+      padding: .5rem 1.2rem; border: 2px solid #2563eb; border-radius: 6px;
+      background: #fff; color: #2563eb; cursor: pointer; font-weight: 600;
+      text-decoration: none; font-size: .95rem; transition: background .15s, color .15s;
+    }
+    .tier-btn.active, .tier-btn:hover { background: #2563eb; color: #fff; }
+
+    /* ---- form ---- */
+    .form-group { margin-bottom: 1.2rem; }
+    label { display: block; font-weight: 600; margin-bottom: .3rem; font-size: .95rem; }
+    label .opt { font-weight: 400; color: #888; font-size: .85rem; }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%; padding: .6rem .8rem; border: 1px solid #d1d5db;
+      border-radius: 6px; font-size: 1rem; box-sizing: border-box;
+      font-family: inherit;
+    }
+    textarea { resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,.15);
+    }
+
+    /* ---- actions ---- */
+    .actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .btn-generate {
+      padding: .75rem 1.8rem; background: #2563eb; color: #fff;
+      border: none; border-radius: 6px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn-generate:hover { background: #1d4ed8; }
+    .btn-copy {
+      padding: .75rem 1.8rem; background: #f3f4f6; color: #374151;
+      border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem;
+      font-weight: 600; cursor: pointer;
+    }
+    .btn-copy:hover { background: #e5e7eb; }
+    .btn-copy.copied { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
+
+    /* ---- fallback note ---- */
+    .fallback {
+      margin-top: 1.5rem; padding: 1rem 1.2rem; background: #fef9c3;
+      border-left: 4px solid #facc15; border-radius: 4px; font-size: .9rem; color: #713f12;
+    }
+    .fallback strong { display: block; margin-bottom: .3rem; }
+    .fallback a { color: #1d4ed8; }
+
+    /* ---- preview ---- */
+    #preview-box {
+      display: none; margin-top: 1.5rem; padding: 1rem; background: #f8fafc;
+      border: 1px solid #e2e8f0; border-radius: 6px;
+      font-family: monospace; white-space: pre-wrap; font-size: .85rem; color: #374151;
+    }
+
+    .back-link { display: inline-block; margin-bottom: 1.5rem; color: #2563eb; text-decoration: none; font-size: .95rem; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="get-started">
+
+  <a href="index.html" class="back-link">&larr; Back to NextRepro</a>
+
+  <h1>Get started with NextRepro</h1>
+  <p class="lead">Fill in the details below. We&rsquo;ll email you the right resource within 24&nbsp;hours.</p>
+
+  <!-- Tier selector -->
+  <div class="tier-tabs">
+    <a href="#free"    class="tier-btn" id="tab-free"    onclick="selectTier('free')">Free Checklist</a>
+    <a href="#toolkit" class="tier-btn" id="tab-toolkit" onclick="selectTier('toolkit')">&pound;49 Toolkit</a>
+    <a href="#audit"   class="tier-btn" id="tab-audit"   onclick="selectTier('audit')">&pound;197 Audit</a>
+  </div>
+
+  <input type="hidden" id="selected-tier" value="free">
+
+  <form id="request-form" onsubmit="return false;">
+
+    <div class="form-group">
+      <label for="f-name">Your name <span class="opt">(optional)</span></label>
+      <input type="text" id="f-name" placeholder="e.g. Dr. Ana García">
+    </div>
+
+    <div class="form-group">
+      <label for="f-org">Organisation / lab <span class="opt">(optional)</span></label>
+      <input type="text" id="f-org" placeholder="e.g. Sanger Institute, EMBL">
+    </div>
+
+    <div class="form-group">
+      <label for="f-email">Your email <span class="opt">(optional &mdash; we only reply to this)</span></label>
+      <input type="email" id="f-email" placeholder="you@institution.ac.uk">
+    </div>
+
+    <div class="form-group">
+      <label for="f-pipeline">Pipeline / workflow</label>
+      <input type="text" id="f-pipeline" placeholder="e.g. nf-core/rnaseq v3.14, custom WGS pipeline">
+    </div>
+
+    <div class="form-group">
+      <label for="f-error">Main reproducibility issue <span class="opt">(optional)</span></label>
+      <textarea id="f-error" rows="3" placeholder="e.g. conda env fails on new node; different results between runs; reviewer can&apos;t reproduce Figure 3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="f-deadline">Deadline / urgency <span class="opt">(optional)</span></label>
+      <input type="text" id="f-deadline" placeholder="e.g. paper submission 15 Aug, journal revision 2 weeks">
+    </div>
+
+    <div class="form-group">
+      <label for="f-budget">Budget <span class="opt">(pre-filled from chosen tier)</span></label>
+      <select id="f-budget">
+        <option value="Free (checklist)">Free (checklist)</option>
+        <option value="GBP 49 (toolkit)">GBP 49 (toolkit)</option>
+        <option value="GBP 197 (audit)">GBP 197 (audit)</option>
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-generate" id="btn-generate" onclick="generateEmail()">
+        Generate email &rarr;
+      </button>
+      <button type="button" class="btn-copy" id="btn-copy" onclick="copyRequest()">
+        Copy request
+      </button>
+    </div>
+  </form>
+
+  <div class="fallback">
+    <strong>If the email client doesn&rsquo;t open automatically:</strong>
+    Copy the request text (button above) and email it manually to
+    <a href="mailto:nextrepro.team@gmail.com">nextrepro.team@gmail.com</a>
+  </div>
+
+  <pre id="preview-box"></pre>
+
+</div>
+
+<script>
+  const EMAIL = 'nextrepro.team@gmail.com';
+
+  // Tier selection
+  const tierBudget = { free: 'Free (checklist)', toolkit: 'GBP 49 (toolkit)', audit: 'GBP 197 (audit)' };
+  const tierSubject = {
+    free:    'NextRepro - Free Checklist Request',
+    toolkit: 'NextRepro - Toolkit (GBP 49)',
+    audit:   'NextRepro - Pipeline Audit (GBP 197)',
+  };
+
+  function selectTier(t) {
+    document.getElementById('selected-tier').value = t;
+    ['free','toolkit','audit'].forEach(id => {
+      document.getElementById('tab-' + id).classList.toggle('active', id === t);
+    });
+    document.getElementById('f-budget').value = tierBudget[t] || 'Not sure yet';
+  }
+
+  // Auto-select tier from hash
+  function initTierFromHash() {
+    const h = (location.hash || '#free').replace('#','');
+    const t = tierBudget[h] ? h : 'free';
+    selectTier(t);
+  }
+  window.addEventListener('load', initTierFromHash);
+  window.addEventListener('hashchange', initTierFromHash);
+
+  function buildText() {
+    const v = id => document.getElementById(id).value.trim();
+    const tier  = document.getElementById('selected-tier').value;
+    const name  = v('f-name')     || '(not provided)';
+    const org   = v('f-org')      || '(not provided)';
+    const email = v('f-email')    || '(not provided)';
+    const pipe  = v('f-pipeline') || '(not provided)';
+    const error = v('f-error')    || '(not provided)';
+    const dl    = v('f-deadline') || '(not provided)';
+    const bud   = v('f-budget')   || tierBudget[tier];
+    return [
+      'Pipeline: ' + pipe,
+      'Error / issue: ' + error,
+      'Deadline: ' + dl,
+      'Budget: ' + bud,
+      '',
+      'Name: ' + name,
+      'Organisation: ' + org,
+      'Reply-to email: ' + email,
+    ].join('\n');
+  }
+
+  function generateEmail() {
+    const tier    = document.getElementById('selected-tier').value;
+    const subject = tierSubject[tier] || 'NextRepro Request';
+    const body    = buildText();
+    const mailto  = 'mailto:' + EMAIL
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+
+    // Show preview
+    const box = document.getElementById('preview-box');
+    box.textContent = 'To: ' + EMAIL + '\nSubject: ' + subject + '\n\n' + body;
+    box.style.display = 'block';
+
+    window.location.href = mailto;
+  }
+
+  function copyRequest() {
+    const tier    = document.getElementById('selected-tier').value;
+    const subject = tierSubject[tier] || 'NextRepro Request';
+    const text    = 'To: ' + EMAIL + '\nSubject: ' + subject + '\n\n' + buildText();
+
+    // Show preview regardless
+    const box = document.getElementById('preview-box');
+    box.textContent = text;
+    box.style.display = 'block';
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('btn-copy');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy request'; btn.classList.remove('copied'); }, 2000);
+      });
+    } else {
+      // Fallback: select text in preview
+      const range = document.createRange();
+      range.selectNodeContents(box);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  }
+</script>
+</body>
+</html>
