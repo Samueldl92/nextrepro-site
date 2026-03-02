@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextRepro — Reproducible Nextflow Pipelines</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="container">
+      <p class="tag">For computational biologists &amp; bioinformatics engineers</p>
+      <h1>Your Nextflow pipeline runs.<br>Nobody else can reproduce it.</h1>
+      <p class="subtitle">
+        Get the free 10-step checklist and close your reproducibility gaps in one afternoon —
+        no account required.
+      </p>
+      <a href="#offer" class="btn-primary">Get the Free Checklist ↓</a>
+    </div>
+  </header>
+
+  <!-- ── PAIN ──────────────────────────────────────────────────────── -->
+  <section class="pain">
+    <div class="container">
+      <h2>Sound familiar?</h2>
+      <ul>
+        <li>Conda environments that work on your HPC but break on every new node</li>
+        <li>Lab members getting different results from the "same" pipeline version</li>
+        <li>Reviewers can't reproduce your published analysis six months later</li>
+        <li>The person who set up the pipeline has left and nobody knows the dependencies</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── SOLUTION ──────────────────────────────────────────────────── -->
+  <section class="solution">
+    <div class="container">
+      <h2>The fix is simpler than you think</h2>
+      <p>
+        Most reproducibility failures come from three root causes: unpinned conda packages,
+        missing container digests, and undocumented system dependencies.
+        The checklist shows you exactly where your pipeline stands and what to fix first.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── PRICING ───────────────────────────────────────────────────── -->
+  <section id="offer" class="pricing">
+    <div class="container">
+      <h2>Choose your starting point</h2>
+      <div class="pricing-grid">
+
+        <div class="plan">
+          <h3>Checklist</h3>
+          <p class="price">Free</p>
+          <p class="plan-desc">
+            The 10-step Nextflow Reproducibility Checklist.
+            Find your biggest gaps in 30 minutes.
+          </p>
+          <a href="mailto:CONTACT_PLACEHOLDER?subject=Free+Checklist" class="btn-secondary">
+            Get it free
+          </a>
+        </div>
+
+        <div class="plan featured">
+          <div class="badge">Most popular</div>
+          <h3>Toolkit</h3>
+          <p class="price">£49</p>
+          <p class="plan-desc">
+            Complete conda-lock setup guide + environment pinning templates +
+            CI/CD integration snippet for GitHub Actions &amp; GitLab CI.
+          </p>
+          <a href="mailto:CONTACT_PLACEHOLDER?subject=Toolkit+£49" class="btn-primary">
+            Get the toolkit
+          </a>
+        </div>
+
+        <div class="plan">
+          <h3>Audit</h3>
+          <p class="price">£197</p>
+          <p class="plan-desc">
+            I review your pipeline repo, identify reproducibility risks, and
+            deliver a written fix plan with code snippets. One revision included.
+          </p>
+          <a href="mailto:CONTACT_PLACEHOLDER?subject=Pipeline+Audit+£197" class="btn-secondary">
+            Book an audit
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────── -->
+  <section class="faq">
+    <div class="container">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>Do I need to rewrite my whole pipeline?</summary>
+        <p>
+          No. Most fixes are additive — you keep your existing workflow and add a
+          conda-lock file and a pinned base image. Most pipelines are production-ready
+          in under 4 hours of work.
+        </p>
+      </details>
+
+      <details>
+        <summary>Which Nextflow versions does this cover?</summary>
+        <p>
+          DSL2 (v21+) with Conda, Docker, or Singularity profiles.
+          The checklist covers both local development and HPC cluster environments.
+        </p>
+      </details>
+
+      <details>
+        <summary>Is this suitable for published / peer-reviewed analyses?</summary>
+        <p>
+          Yes — the audit specifically checks for the reproducibility requirements
+          of journals like Nature Methods, Genome Biology, and eLife.
+          It also covers FAIR data principles.
+        </p>
+      </details>
+
+      <details>
+        <summary>What if I use Singularity instead of Conda?</summary>
+        <p>
+          The toolkit covers Singularity, Docker, and Conda.
+          The checklist flags which sections are relevant to your specific setup.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <p>
+        Questions? <a href="mailto:CONTACT_PLACEHOLDER">Email us</a> — usually reply within 24h.
+      </p>
+      <p class="small">
+        No spam. No newsletter unless you ask for one.
+        <!-- UTM source tags: see tracking/utm_links.md -->
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
