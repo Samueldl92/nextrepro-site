@@ -1,0 +1,11 @@
+﻿title: "NextTrePro"
+url: "https://samueldl92.github.io"
+baseurl: "/nextrepro-site"
+permalink: pretty
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
